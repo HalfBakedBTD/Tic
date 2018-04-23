@@ -118,39 +118,39 @@ bot.on("message", async message => {
                   if (lmessages[message.author.id].eight === lmessages[message.author.id].nine) {
                     if (lmessages[message.author.id].nine === lmessages[message.author.id].ten) {
                       tics[message.author.id].tics = tics[message.author.id].tics +25
-                      message.reply(`you have just repeated himself nine times! [tic +25]`)
+                      message.reply(`you have just repeated himself nine times! [tic +25]`).then(msg => msg.delete(5000));
                       return;
                     }
                     tics[message.author.id].tics = tics[message.author.id].tics +10
-                    message.reply(`you have just repeated yourself eight times! [tic +10]`)
+                    message.reply(`you have just repeated yourself eight times! [tic +10]`).then(msg => msg.delete(5000));
                     return;
                   }
                   tics[message.author.id].tics = tics[message.author.id].tics +7.5
-                  message.reply(`you have just repeated yourself seven times! [tic +7.5]`)
+                  message.reply(`you have just repeated yourself seven times! [tic +7.5]`).then(msg => msg.delete(5000));
                   return;
                 }
                 tics[message.author.id].tics = tics[message.author.id].tics +4
-                message.reply(`you have just repeated yourself six times! [tic +4]`)
+                message.reply(`you have just repeated yourself six times! [tic +4]`).then(msg => msg.delete(5000));
                 return;
               }
               tics[message.author.id].tics = tics[message.author.id].tics +2.5
-              message.reply(`you have just repeated yourself five times! [tic +2.5]`)
+              message.reply(`you have just repeated yourself five times! [tic +2.5]`).then(msg => msg.delete(5000));
               return;
             }
             tics[message.author.id].tics = tics[message.author.id].tics +1
-            message.reply(`you have just repeated yourself four times! [tic +1]`)
+            message.reply(`you have just repeated yourself four times! [tic +1]`).then(msg => msg.delete(5000));
             return;
           }
           tics[message.author.id].tics = tics[message.author.id].tics +0.75
-          message.reply(`you have just repeated yourself three times! [tic +0.75]`)
+          message.reply(`you have just repeated yourself three times! [tic +0.75]`).then(msg => msg.delete(5000));
           return;
         }
         tics[message.author.id].tics = tics[message.author.id].tics +0.5
-        message.reply(`you have just repeated yourself two times! [tic +0.5]`)
+        message.reply(`you have just repeated yourself two times! [tic +0.5]`).then(msg => msg.delete(5000));
         return;
       }
       tics[message.author.id].tics = tics[message.author.id].tics + 0.25
-      message.reply(`you have just repeated yourself! [tic +0.25]`)
+      message.reply(`you have just repeated yourself! [tic +0.25]`).then(msg => msg.delete(5000));
       return;
     }
   }
