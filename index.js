@@ -26,7 +26,7 @@ fs.readdir("./commands/", (err, files) => {
 bot.on("ready", async () => {
   console.log(`${bot.user.username} is online!`);
 
-  bot.user.setGame(`with ${bot.guilds.size} servers. | tic help.`);
+  bot.user.setGame(`with ${bot.guilds.size} servers. | ,help.`);
 });
 
 bot.on("message", async message => {
@@ -36,7 +36,7 @@ bot.on("message", async message => {
   let prefixes = JSON.parse(fs.readFileSync("./prefixes.json", "utf8"));
   if(!prefixes[message.guild.id]){
     prefixes[message.guild.id] = {
-      prefixes: 'tic '
+      prefixes: ','
     };
   }
   
@@ -48,8 +48,8 @@ bot.on("message", async message => {
   
   let prefix = prefixes[message.guild.id].prefixes;
   let messageArray = message.content.split(" ");
-  let cmd = messageArray[1];
-  let args = messageArray.slice(2);
+  let cmd = messageArray[0];
+  let args = messageArray.slice(1);
   if (!message.content.startsWith(`${prefix}`)) {
     return;
   }  
