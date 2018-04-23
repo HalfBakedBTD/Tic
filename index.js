@@ -36,7 +36,7 @@ bot.on("message", async message => {
   let prefixes = JSON.parse(fs.readFileSync("./prefixes.json", "utf8"));
   if(!prefixes[message.guild.id]){
     prefixes[message.guild.id] = {
-      prefixes: 'tic'
+      prefixes: 'tic '
     };
   }
   
@@ -48,7 +48,7 @@ bot.on("message", async message => {
   
   let prefix = prefixes[message.guild.id].prefixes;
   let messageArray = message.content.split(" ");
-  let cmd = messageArray[0];
+  let cmd = messageArray[1];
   let args = messageArray.slice(1);
   if (!message.content.startsWith(`${prefix}`)) {
     return;
