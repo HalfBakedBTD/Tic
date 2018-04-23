@@ -49,7 +49,7 @@ bot.on("message", async message => {
   let prefix = prefixes[message.guild.id].prefixes;
   let messageArray = message.content.split(" ");
   let cmd = messageArray[1];
-  let args = messageArray.slice(1);
+  let args = messageArray.slice(2);
   if (!message.content.startsWith(`${prefix}`)) {
     return;
   }  
