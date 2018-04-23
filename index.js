@@ -4,6 +4,7 @@ const fs = require("fs");
 const bot = new Discord.Client({disableEveryone: true});
 bot.commands = new Discord.Collection();
 const tics = require("./tics.json");
+const lmessages = require("./lmessages.json");
 const ms = require("ms");
 
 fs.readdir("./commands/", (err, files) => {
@@ -76,6 +77,51 @@ bot.on("message", async message => {
   if(!tics[message.author.id]) {
     tics[message.author.id] = {
       tics: 0
+    }
+  }
+  
+  if(!lmessages[message.author.id]) {
+    lmessages[message.author.id] = {
+      one: `${message.content}`,
+      two: "",
+      three: "",
+      four: "",
+      five: "",
+      six: "",
+      seven: "",
+      eight: "",
+      nine: "",
+      ten: ""
+    }
+  } else {
+    lmessages[message.author.id].ten = lmessages[message.author.id].nine
+    lmessages[message.author.id].nine = lmessages[message.author.id].eight
+    lmessages[message.author.id].eight = lmessages[message.author.id].seven
+    lmessages[message.author.id].seven = lmessages[message.author.id].six
+    lmessages[message.author.id].six = lmessages[message.author.id].five
+    lmessages[message.author.id].five = lmessages[message.author.id].four
+    lmessages[message.author.id].four = lmessages[message.author.id].three
+    lmessages[message.author.id].three = lmessages[message.author.id].two
+    lmessages[message.author.id].two = lmessages[message.author.id].one
+    lmessages[message.author.id].one = message.content
+  }
+  
+  if (lmessages[message.author.id].one === lmessages[message.author.id].two) {
+    if (lmessages[message.author.id].two === lmessages[message.author.id].three) {
+      if (lmessages[message.author.id].three === lmessages[message.author.id].four) {
+        if (lmessages[message.author.id].four === lmessages[message.author.id].five) {
+          if (lmessages[message.author.id].five === lmessages[message.author.id].six) {
+            if (lmessages[message.author.id].six === lmessages[message.author.id].seven) {
+              if (lmessages[message.author.id].seven === lmessages[message.author.id].eight) {
+                if (lmessages[message.author.id].eight === lmessages[message.author.id].nine) {
+                  if (lmessages[message.author.id].nine === lmessages[message.author.id].ten) {
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
   
