@@ -26,6 +26,6 @@
     "snekfetch": "^3.6.4",
     "sqlite3": "^4.0.0",
     "strict-uri-encode": "^2.0.0",
-    "table": "^4.0.3",
+    "table": "^4.0.3"
   }
 }
