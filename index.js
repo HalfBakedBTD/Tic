@@ -30,7 +30,7 @@ bot.on("ready", async () => {
   bot.user.setGame(`with ${bot.guilds.size} servers. | ,help.`);
 });
 
-bot.on('guildMemberAdd', member => {
+bot.on('guildMemberAdd', async member => {
   let tomute = member;
   
   let muterole = member.guild.roles.find(`name`, "tic mute");
