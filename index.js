@@ -54,7 +54,7 @@ bot.on('guildMemberAdd', async member => {
   let mutetime = "15m";
 
   await(tomute.addRole(muterole.id));
-  member.send(`To prevent rading, you have been auto muted and therefore cannot chat in **${member.guild.name}** for 15 minutes. Once the mute is over, I will message you again letting you know that you can chat!`);
+  member.send(`To prevent raiding, you have been auto muted and therefore cannot chat in **${member.guild.name}** for 15 minutes. Once the mute is over, I will message you again letting you know that you can chat!`);
 
   setTimeout(function(){
     tomute.removeRole(muterole.id);
