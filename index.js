@@ -106,22 +106,42 @@ bot.on("message", async message => {
     lmessages[message.author.id].one = message.content
   }
   
-  if (lmessages[message.author.id].one === lmessages[message.author.id].two) {
-    if (lmessages[message.author.id].two === lmessages[message.author.id].three) {
-      if (lmessages[message.author.id].three === lmessages[message.author.id].four) {
-        if (lmessages[message.author.id].four === lmessages[message.author.id].five) {
-          if (lmessages[message.author.id].five === lmessages[message.author.id].six) {
-            if (lmessages[message.author.id].six === lmessages[message.author.id].seven) {
-              if (lmessages[message.author.id].seven === lmessages[message.author.id].eight) {
-                if (lmessages[message.author.id].eight === lmessages[message.author.id].nine) {
-                  if (lmessages[message.author.id].nine === lmessages[message.author.id].ten) {
+  if (!message.content.startsWith(',')) {
+    if (lmessages[message.author.id].one === lmessages[message.author.id].two) {
+      if (lmessages[message.author.id].two === lmessages[message.author.id].three) {
+        if (lmessages[message.author.id].three === lmessages[message.author.id].four) {
+          if (lmessages[message.author.id].four === lmessages[message.author.id].five) {
+            if (lmessages[message.author.id].five === lmessages[message.author.id].six) {
+              if (lmessages[message.author.id].six === lmessages[message.author.id].seven) {
+                if (lmessages[message.author.id].seven === lmessages[message.author.id].eight) {
+                  if (lmessages[message.author.id].eight === lmessages[message.author.id].nine) {
+                    if (lmessages[message.author.id].nine === lmessages[message.author.id].ten) {
+                      tics[message.author.id].tics = tics[message.author.id].tics +25
+                      message.reply(`you have just repeated himself nine times! [tic +25]`)
+                    }
+                    tics[message.author.id].tics = tics[message.author.id].tics +10
+                    message.reply(`you have just repeated yourself eight times! [tic +10]`)
                   }
+                  tics[message.author.id].tics = tics[message.author.id].tics +7.5
+                  message.reply(`you have just repeated yourself seven times! [tic +7.5]`)
                 }
+                tics[message.author.id].tics = tics[message.author.id].tics +4
+                message.reply(`you have just repeated yourself six times! [tic +4]`)
               }
+              tics[message.author.id].tics = tics[message.author.id].tics +2.5
+              message.reply(`you have just repeated yourself five times! [tic +2.5]`)
             }
+            tics[message.author.id].tics = tics[message.author.id].tics +1
+            message.reply(`you have just repeated yourself four times! [tic +1]`)
           }
+          tics[message.author.id].tics = tics[message.author.id].tics +0.75
+          message.reply(`you have just repeated yourself four times! [tic +0.75]`)
         }
+        tics[message.author.id].tics = tics[message.author.id].tics +0.5
+        message.reply(`you have just repeated yourself three times! [tic +0.5]`)
       }
+      tics[message.author.id].tics = tics[message.author.id].tics + 0.25
+      message.reply(`you have just repeated yourself! [tic +0.25]`)
     }
   }
   
