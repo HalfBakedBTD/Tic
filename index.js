@@ -108,6 +108,7 @@ bot.on("message", async message => {
   
   if (!message.content.startsWith(',')) {
     if (lmessages[message.author.id].one === lmessages[message.author.id].two) {
+      message.delete().catch(O_o=>{}); 
       if (lmessages[message.author.id].two === lmessages[message.author.id].three) {
         if (lmessages[message.author.id].three === lmessages[message.author.id].four) {
           if (lmessages[message.author.id].four === lmessages[message.author.id].five) {
