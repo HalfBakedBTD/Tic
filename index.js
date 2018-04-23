@@ -4,6 +4,7 @@ const fs = require("fs");
 const bot = new Discord.Client({disableEveryone: true});
 bot.commands = new Discord.Collection();
 const tics = require("./tics.json");
+const ms = require("ms");
 
 fs.readdir("./commands/", (err, files) => {
 
@@ -27,6 +28,38 @@ bot.on("ready", async () => {
   console.log(`${bot.user.username} is online!`);
 
   bot.user.setGame(`with ${bot.guilds.size} servers. | ,help.`);
+});
+
+bot.on('guildMemberAdd', member => {
+  let tomute = member;
+  
+  let muterole = member.guild.roles.find(`name`, "tic mute");
+  if(!muterole){
+    try{
+      muterole = await member.guild.createRole({
+        name: "tic mute",
+        color: "#000000",
+        permissions:[]
+      })
+      member.guild.channels.forEach(async (channel, id) => {
+        await channel.overwritePermissions(muterole, {
+          SEND_MESSAGES: false,
+          ADD_REACTIONS: false
+        });
+      });
+    }catch(e){
+      console.log(e.stack);
+    }
+  }
+  let mutetime = "15m";
+
+  await(tomute.addRole(muterole.id));
+  member.send(`To prevent rading, you have been auto muted and therefore cannot chat in **${member.guild.name}** for 15 minutes. Once the mute is over, I will message you again letting you know that you can chat!`);
+
+  setTimeout(function(){
+    tomute.removeRole(muterole.id);
+    member.send(`You have been unmuted! You can now chat in **${member.guild.name}**!`);
+  }, ms(mutetime));
 });
 
 bot.on("message", async message => {
