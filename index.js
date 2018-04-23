@@ -141,11 +141,11 @@ bot.on("message", async message => {
             return;
           }
           tics[message.author.id].tics = tics[message.author.id].tics +0.75
-          message.reply(`you have just repeated yourself four times! [tic +0.75]`)
+          message.reply(`you have just repeated yourself three times! [tic +0.75]`)
           return;
         }
         tics[message.author.id].tics = tics[message.author.id].tics +0.5
-        message.reply(`you have just repeated yourself three times! [tic +0.5]`)
+        message.reply(`you have just repeated yourself two times! [tic +0.5]`)
         return;
       }
       tics[message.author.id].tics = tics[message.author.id].tics + 0.25
