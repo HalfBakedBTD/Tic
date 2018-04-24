@@ -65,6 +65,7 @@ bot.on('guildMemberAdd', async member => {
     tomute.removeRole(muterole.id);
     member.send(`You have been unmuted! You can now chat in **${member.guild.name}**!`);
   }, ms(mutetime));
+  
 });
 
 bot.on("message", async message => {
@@ -141,13 +142,14 @@ bot.on("message", async message => {
       let mutetime = "10m";
 
       await(pMute.addRole(muterole.id));
-      message.author.send(`You have just hit five tics! You are now muted for **10 minutes**.`);  
+      message.author.send(`You have been muted in **${message.guild.name}** for getting over 5 tics without being muted in it yet. [10min]`);  
 
       setTimeout(function(){
         pMute.removeRole(muterole.id);
         message.author.send(`You have been unmuted! You can now chat in **${message.guild.name}**!`);
       }, ms(mutetime));
     }
+    return;
   }
   
   if (claim_talked_users.has(message.author.id)) {
