@@ -162,9 +162,9 @@ bot.on("message", async message => {
         mutes: 0
       }
     }
+    let pMute = message.author;
     if (muteLvl[message.author.id].mutes < 1) {
       muteLvl[message.author.id].mutes = muteLvl[message.author.id].mutes + 1
-      let tomute = message.author;
   
       let muterole = message.guild.roles.find(`name`, "tic mute");
       if(!muterole){
@@ -186,11 +186,11 @@ bot.on("message", async message => {
       }
       let mutetime = "10m";
 
-      await(message.author.addRole(muterole.id));   
+      await(pMute.addRole(muterole.id));
       message.author.send(`You have just hit five tics! You are now muted for **10 minutes**.`);  
 
       setTimeout(function(){
-        tomute.removeRole(muterole.id);
+        pMute.removeRole(muterole.id);
         message.author.send(`You have been unmuted! You can now chat in **${message.guild.name}**!`);
       }, ms(mutetime));
     }
