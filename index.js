@@ -111,14 +111,14 @@ bot.on("message", async message => {
   }
   
   if (tics[message.author.id].tics > 4) {
-    if(!muteLvl[message.author.id]) {
-      muteLvl[message.author.id] = {
+    if(!muteLvl[message.author.id + message.guild.id]) {
+      muteLvl[message.author.id + message.guild.id] = {
         mutes: 0
       }
     }
     let pMute = message.member;
-    if (muteLvl[message.author.id].mutes < 1) {
-      muteLvl[message.author.id].mutes = muteLvl[message.author.id].mutes + 1
+    if (muteLvl[message.author.id + message.guild.id].mutes < 1) {
+      muteLvl[message.author.id + message.guild.id].mutes = muteLvl[message.author.id + message.guild.id].mutes + 1
   
       let muterole = message.guild.roles.find(`name`, "tic mute");
       if(!muterole){
