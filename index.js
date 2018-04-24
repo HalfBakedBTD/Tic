@@ -107,6 +107,46 @@ bot.on("message", async message => {
     lmessages[message.author.id].one = message.content
   }
   
+  if (tics[message.author.id].tics > 4) {
+    if(!muteLvl[message.author.id]) {
+      muteLvl[message.author.id] = {
+        mutes: 0
+      }
+    }
+    let pMute = message.member;
+    if (muteLvl[message.author.id].mutes < 1) {
+      muteLvl[message.author.id].mutes = muteLvl[message.author.id].mutes + 1
+  
+      let muterole = message.guild.roles.find(`name`, "tic mute");
+      if(!muterole){
+        try{
+          muterole = await message.guild.createRole({
+            name: "tic mute",
+            color: "#000000",
+            permissions:[]
+          })
+            message.guild.channels.forEach(async (channel, id) => {
+            await channel.overwritePermissions(muterole, {
+              SEND_MESSAGES: false,
+              ADD_REACTIONS: false
+            });
+          });
+        }catch(e){
+          console.log(e.stack);
+        }
+      }
+      let mutetime = "10m";
+
+      await(pMute.addRole(muterole.id));
+      message.author.send(`You have just hit five tics! You are now muted for **10 minutes**.`);  
+
+      setTimeout(function(){
+        pMute.removeRole(muterole.id);
+        message.author.send(`You have been unmuted! You can now chat in **${message.guild.name}**!`);
+      }, ms(mutetime));
+    }
+  }
+  
   if (!message.content.startsWith(',')) {
     if (lmessages[message.author.id].one === lmessages[message.author.id].two) {
       message.delete().catch(O_o=>{}); 
@@ -153,46 +193,6 @@ bot.on("message", async message => {
       tics[message.author.id].tics = tics[message.author.id].tics + 0.25
       message.reply(`you have just repeated yourself! [tic +0.25]`).then(msg => msg.delete(5000));
       return;
-    }
-  }
-  
-  if (tics[message.author.id].tics > 4) {
-    if(!muteLvl[message.author.id]) {
-      muteLvl[message.author.id] = {
-        mutes: 0
-      }
-    }
-    let pMute = message.member;
-    if (muteLvl[message.author.id].mutes < 1) {
-      muteLvl[message.author.id].mutes = muteLvl[message.author.id].mutes + 1
-  
-      let muterole = message.guild.roles.find(`name`, "tic mute");
-      if(!muterole){
-        try{
-          muterole = await message.guild.createRole({
-            name: "tic mute",
-            color: "#000000",
-            permissions:[]
-          })
-            message.guild.channels.forEach(async (channel, id) => {
-            await channel.overwritePermissions(muterole, {
-              SEND_MESSAGES: false,
-              ADD_REACTIONS: false
-            });
-          });
-        }catch(e){
-          console.log(e.stack);
-        }
-      }
-      let mutetime = "10m";
-
-      await(pMute.addRole(muterole.id));
-      message.author.send(`You have just hit five tics! You are now muted for **10 minutes**.`);  
-
-      setTimeout(function(){
-        pMute.removeRole(muterole.id);
-        message.author.send(`You have been unmuted! You can now chat in **${message.guild.name}**!`);
-      }, ms(mutetime));
     }
   }
   
