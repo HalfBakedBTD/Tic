@@ -8,6 +8,9 @@ const lmessages = require("./lmessages.json");
 const muteLvl = require("./muteslevel.json");
 const ms = require("ms");
 
+const claim_cooldown_time = 0.5;
+const claim_talked_users = new Set();
+
 fs.readdir("./commands/", (err, files) => {
 
   if(err) console.log(err);
@@ -147,6 +150,11 @@ bot.on("message", async message => {
     }
   }
   
+  if (claim_talked_users.has(message.author.id)) {
+    tics[message.author.id].tics = tics[message.author.id].tics + 0.1
+    return message.reply("stop sending messages so quickly. Wait half a second between chats! [tic +0.1]").then(msg => msg.delete(500));
+  }
+  
   if (!message.content.startsWith(',')) {
     if (lmessages[message.author.id].one === lmessages[message.author.id].two) {
       message.delete().catch(O_o=>{}); 
@@ -195,6 +203,11 @@ bot.on("message", async message => {
       return;
     }
   }
+  
+  claim_talked_users.add(message.author.id);
+    setTimeout(() => {
+      claim_talked_users.delete(message.author.id);
+  }, claim_cooldown_time * 1000);
   
   let prefix = prefixes[message.guild.id].prefixes;
   let messageArray = message.content.split(" ");
