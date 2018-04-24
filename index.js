@@ -162,7 +162,7 @@ bot.on("message", async message => {
         mutes: 0
       }
     }
-    let pMute = message.author;
+    let pMute = message.member;
     if (muteLvl[message.author.id].mutes < 1) {
       muteLvl[message.author.id].mutes = muteLvl[message.author.id].mutes + 1
   
