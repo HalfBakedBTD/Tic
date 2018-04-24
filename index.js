@@ -186,7 +186,7 @@ bot.on("message", async message => {
       }
       let mutetime = "10m";
 
-      await(tomute.addRole(muterole.id));   
+      await(message.author.addRole(muterole.id));   
       message.author.send(`You have just hit five tics! You are now muted for **10 minutes**.`);  
 
       setTimeout(function(){
